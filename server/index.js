@@ -11,5 +11,5 @@ server.listen(PORT, (error)=>{
         console.log(error)
     }
 
-    console.log(`Servidor rodando na porta: ${PORT}`)
+    console.log(`Servidor rodando http://localhost:${PORT}`)
 })
