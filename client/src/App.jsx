@@ -9,7 +9,7 @@ function App() {
   return (
     <>
     {
-        chatVisibility ? <Chat /> : <Join />
+        chatVisibility ? <Chat /> : <Join setChatVisibility={setChatVisibility}/>
     }
     </>
   )
