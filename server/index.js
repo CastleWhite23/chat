@@ -26,7 +26,12 @@ io.on('connection', (socket) => {
     //para receber emits
     socket.on('set_username', (username)=>{
         socket.data.username = username
-        console.log("vai curintia", socket.data.username);
+        console.log("Usuario conectado", socket.data.username);
+    })
+
+    socket.on('message', (message)=>{
+        socket.data.message = message
+        console.log(`Usuario: ${socket.data.username}; Mensagem: ${socket.data.message}`);
     })
 });
 
