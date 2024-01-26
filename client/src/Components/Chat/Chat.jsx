@@ -1,12 +1,21 @@
-import React from "react";
-import { useRef } from "react";
+import React, { useState, useRef } from "react";
+
 
 const Chat = ({ socket }) => {
-
+    const [messageList, setMessageList] = useState([])
     const messageRef = useRef()
 
-    const handleClickEnviarButton = () => {
+    const clearInput =  () => {
+        messageRef.current.value = ''
+    }
 
+    const handleClickEnviarButton = () => {
+        const message = messageRef.current.value
+        if(!message.trim()) return
+
+        socket.emit('message', message)
+
+        clearInput()
     }
 
     return (
