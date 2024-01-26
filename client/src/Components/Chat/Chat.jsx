@@ -25,6 +25,8 @@ const Chat = ({ socket }) => {
 
         socket.emit('message', message)
         clearInput()
+        focusInput()
+        scrollToBottom()
     }
 
 
@@ -32,28 +34,47 @@ const Chat = ({ socket }) => {
         messageRef.current.value = ''
     }
     const getEnterKey = (e) => {
-        if (e.key === "Enter"){
+        if (e.key === "Enter") {
             handleClickEnviarButton()
         }
-            
+
     }
-    const focusInput = () =>{
+    const focusInput = () => {
         messageRef.current.focus()
+    }
+
+    function scrollToBottom() {
+        var chatContainer = document.querySelector('.chat-message-ballon');
+        var lastChild = chatContainer.lastElementChild;
+
+        if (lastChild) {
+            lastChild.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        }
     }
 
     return (
         <>
             <div className="chat">
-                <div className="chat-messages">
-                    {
-                        messageList.map((message, index) => (
-                            <div className="chat-message-ballon" key={index}>
-                                <h1> {message.author} </h1>
-                                <p> {message.message}</p>
-                            </div>
+                <div className="chat-messages">                    {
+                    messageList.map((message, index) => (
+                        <div className="chat-message-ballon" style={
+                            message.authorId !== socket.id ? {
+                                backgroundColor: "#f5f5f5",
+                                color: "#303030",
+                                alignSelf: "flex-start"
+                            } : {}
+                        }
+                            key={index}>
+                            <h1 style={
+                                message.authorId !== socket.id ? {
+                                    textAlign: "left"
+                                } : {}
+                            }> {message.author} </h1>
+                            <p> {message.message}</p>
+                        </div>
 
-                        ))
-                    }
+                    ))
+                }
                 </div>
                 <div className="chat-input" onKeyUp={getEnterKey}>
                     <input type="text" ref={messageRef} placeholder="Mensagem" />
