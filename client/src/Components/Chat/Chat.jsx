@@ -10,13 +10,16 @@ const Chat = ({ socket }) => {
     useEffect(() => {
 
         socket.on('returnData', (data) => {
-
             setMessageList((current) => [...current, data])
-
+            
         })
 
         return () => socket.off('returnData')
     }, [socket])
+
+    useEffect(()=>{
+        scrollToBottom();
+    }, [messageList])
 
     const handleClickEnviarButton = () => {
         console.log(messageList)
@@ -44,12 +47,9 @@ const Chat = ({ socket }) => {
     }
 
     function scrollToBottom() {
-        var chatContainer = document.querySelector('.chat-message-ballon');
-        var lastChild = chatContainer.lastElementChild;
-
-        if (lastChild) {
-            lastChild.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-        }
+        var lastItem = document.querySelector('#lastItem');
+        lastItem.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        
     }
 
     return (
@@ -75,6 +75,7 @@ const Chat = ({ socket }) => {
 
                     ))
                 }
+                    <div id="lastItem"></div>
                 </div>
                 <div className="chat-input" onKeyUp={getEnterKey}>
                     <input type="text" ref={messageRef} placeholder="Mensagem" />
