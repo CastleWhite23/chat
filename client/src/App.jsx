@@ -10,7 +10,7 @@ function App() {
   return (
     <>
     {
-        chatVisibility ? <Chat setSocket={setSocket} /> : <Join setChatVisibility={setChatVisibility}/>
+        chatVisibility ? <Chat  socket={socket}/> : <Join setSocket={setSocket} setChatVisibility={setChatVisibility}/>
     }
     </>
   )
