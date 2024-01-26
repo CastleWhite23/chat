@@ -1,17 +1,29 @@
 
-const app = require("express")()
-const server =  require("http").createServer(app)
-const io =  require("socket.io")(server, {cors: {origin: 'http://localhost:5173/ '}})
+// const app = require("express")()
+// const server =  require("http").createServer(app)
+// const io =  require("socket.io")(server, )
 
-const PORT = 8081;
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
 
-io.on('connection', socket => {
-    console.log('usuario conectado', socket.id)
-})
+const io = require("socket.io")(server, {
+    cors: {
+        origin: "http://localhost:5173",
+        methods: ["GET", "POST"]
+    }
+});
 
 
-server.listen(PORT, (error)=>{
-    if(error){
+io.on('connection', (socket) => {
+    console.log('a user connected', socket.id);
+});
+
+const PORT = 3001;
+
+server.listen(PORT, (error) => {
+    if (error) {
         console.log(error)
     }
 
