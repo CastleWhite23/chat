@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
+import './Chat.css'
 
 const Chat = ({ socket }) => {
 
@@ -9,8 +9,10 @@ const Chat = ({ socket }) => {
 
     useEffect(() => {
 
-         socket.on('returnData', (data) => {
-            console.log(data)
+        socket.on('returnData', (data) => {
+
+            setMessageList((current) => [...current, data])
+
         })
 
         return () => socket.off('returnData')
@@ -21,6 +23,7 @@ const Chat = ({ socket }) => {
     }
 
     const handleClickEnviarButton = () => {
+        console.log(messageList)
         const message = messageRef.current.value
         if (!message.trim()) return
 
@@ -30,9 +33,24 @@ const Chat = ({ socket }) => {
 
     return (
         <>
-            <h1>Chat</h1>
-            <input type="text" ref={messageRef} placeholder="Mensagem" />
-            <button onClick={handleClickEnviarButton}>Enviar</button>
+            <div className="chat">
+                <div className="chat-messages">
+                    {
+                        messageList.map((message) => (
+                            <>
+                                <h1> {message.author} </h1>
+                                <p> {message.message}</p>
+                            </>
+
+                        ))
+                    }
+                </div>
+                <div className="chat-input">
+                    <input type="text" ref={messageRef} placeholder="Mensagem" />
+                    <button onClick={handleClickEnviarButton}>Enviar</button>
+                </div>
+            </div>
+
         </>
     )
 }
