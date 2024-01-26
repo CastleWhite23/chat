@@ -36,11 +36,11 @@ const Chat = ({ socket }) => {
             <div className="chat">
                 <div className="chat-messages">
                     {
-                        messageList.map((message) => (
-                            <>
+                        messageList.map((message, index) => (
+                            <div className="chat-message-ballon" key={index}>
                                 <h1> {message.author} </h1>
                                 <p> {message.message}</p>
-                            </>
+                            </div>
 
                         ))
                     }
