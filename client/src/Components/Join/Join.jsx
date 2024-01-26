@@ -2,7 +2,7 @@ import React from "react";
 import { useRef } from "react";
 import { io } from "socket.io-client";
 
-const Join = ( {setChatVisibility}) =>{
+const Join = ( {setChatVisibility, setSocket}) =>{
 
     const usernameRef  = useRef()
     
@@ -12,7 +12,7 @@ const Join = ( {setChatVisibility}) =>{
         const socket = await io.connect("http://localhost:3001")
 
         socket.emit("set_username", username)
-        
+
         setChatVisibility(true)
     }
 
