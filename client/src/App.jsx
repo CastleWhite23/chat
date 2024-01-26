@@ -5,11 +5,12 @@ import './App.css'
 
 function App() {
   const [chatVisibility, setChatVisibility] = useState(false)
+  const [socket, setSocket] =  useState(null)
 
   return (
     <>
     {
-        chatVisibility ? <Chat /> : <Join setChatVisibility={setChatVisibility}/>
+        chatVisibility ? <Chat setSocket={setSocket} /> : <Join setChatVisibility={setChatVisibility}/>
     }
     </>
   )
