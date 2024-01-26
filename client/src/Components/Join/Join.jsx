@@ -1,5 +1,6 @@
 import React from "react";
 import { useRef } from "react";
+import io from 'socket.io-client'
 const Join = ( {setChatVisibility}) =>{
 
     const usernameRef  = useRef()
@@ -7,7 +8,7 @@ const Join = ( {setChatVisibility}) =>{
     const handleClickEntrarButton = () =>{
         const username = usernameRef.current.value
         if(!username.trim()) return
-        
+        const socket = io.connect('http://localhost:8081')
         setChatVisibility(true)
     }
 
