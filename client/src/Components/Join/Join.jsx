@@ -6,10 +6,11 @@ const Join = ( {setChatVisibility}) =>{
 
     const usernameRef  = useRef()
     
-    const handleClickEntrarButton = () =>{
+    const handleClickEntrarButton = async () =>{
         const username = usernameRef.current.value
         if(!username.trim()) return
-        const socket = io.connect("http://localhost:3001")
+        const socket = await io.connect("http://localhost:3001")
+        socket.emit("set_username", username)
         setChatVisibility(true)
     }
 
