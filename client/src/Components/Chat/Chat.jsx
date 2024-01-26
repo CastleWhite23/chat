@@ -18,10 +18,6 @@ const Chat = ({ socket }) => {
         return () => socket.off('returnData')
     }, [socket])
 
-    const clearInput = () => {
-        messageRef.current.value = ''
-    }
-
     const handleClickEnviarButton = () => {
         console.log(messageList)
         const message = messageRef.current.value
@@ -29,6 +25,20 @@ const Chat = ({ socket }) => {
 
         socket.emit('message', message)
         clearInput()
+    }
+
+
+    const clearInput = () => {
+        messageRef.current.value = ''
+    }
+    const getEnterKey = (e) => {
+        if (e.key === "Enter"){
+            handleClickEnviarButton()
+        }
+            
+    }
+    const focusInput = () =>{
+        messageRef.current.focus()
     }
 
     return (
@@ -45,9 +55,9 @@ const Chat = ({ socket }) => {
                         ))
                     }
                 </div>
-                <div className="chat-input">
+                <div className="chat-input" onKeyUp={getEnterKey}>
                     <input type="text" ref={messageRef} placeholder="Mensagem" />
-                    <button onClick={handleClickEnviarButton}>Enviar</button>
+                    <button onClick={handleClickEnviarButton} >Enviar</button>
                 </div>
             </div>
 
