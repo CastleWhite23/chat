@@ -12,7 +12,7 @@ const Join = ( {setChatVisibility, setSocket}) =>{
         const socket = await io.connect("http://localhost:3001")
 
         socket.emit("set_username", username)
-
+        setSocket(socket)
         setChatVisibility(true)
     }
 
