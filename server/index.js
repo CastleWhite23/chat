@@ -19,6 +19,11 @@ const io = require("socket.io")(server, {
 io.on('connection', (socket) => {
     console.log('a user connected', socket.id);
 
+    socket.on('disconnect', (reason)=>{
+        console.log("User desconectado", socket.id)
+    })
+
+    //para receber emits
     socket.on('set_username', (username)=>{
         socket.data.username = username
         console.log("vai curintia", socket.data.username);
