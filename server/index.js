@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
 
     socket.on('message', (message) => {
         socket.data.message = message
-        console.log(`Usuario: ${socket.data.username}; Mensagem: ${socket.data.message}`);
+        // console.log(`Usuario: ${socket.data.username}; Mensagem: ${socket.data.message}`);
         
         io.emit('returnData', {
             authorId: socket.id,
