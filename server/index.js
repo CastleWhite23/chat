@@ -6,6 +6,8 @@
 const express = require('express');
 const app = express();
 const http = require('http');
+const tabelas = require('./src/tabelas/tabelas');
+const connection = require('./src/config/connection');
 const server = http.createServer(app);
 
 const io = require("socket.io")(server, {
@@ -14,6 +16,9 @@ const io = require("socket.io")(server, {
         methods: ["GET", "POST"]
     }
 });
+
+
+tabelas.init(connection)
 
 
 io.on('connection', (socket) => {
