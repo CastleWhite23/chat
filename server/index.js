@@ -17,7 +17,9 @@ const io = require("socket.io")(server, {
     }
 });
 
+const router = require('./src/Routes/index')
 
+router(app, express)
 tabelas.init(connection)
 
 
