@@ -17,9 +17,9 @@ class ModelMensagens{
 
     }
 
-    postMessages(message, author){
+    postMessages(mensagem, autor){
         const sql = `INSERT INTO mensagens SET ?`
-        this.executarQuery(sql, [message, author])
+        this.executarQuery(sql, {mensagem, autor})
     }
 }
 
