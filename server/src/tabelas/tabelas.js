@@ -8,14 +8,17 @@ class Tabelas {
 
     criarTabelaMensagens() {
         const sql = `
-            CREATE TABLE IF NOT EXISTS mensagens(
-                id_mensagem INT PRIMARY KEY AUTOINCREMENT,
+            CREATE TABLE IF NOT EXISTS mensagens (
+                id_mensagem INT PRIMARY KEY AUTO_INCREMENT,
                 mensagem VARCHAR(150),
                 autor VARCHAR(25)
             );
         `
         this.connection.query(sql, (error, results) => {
-            if(error) console.log(error) 
+            if(error) {
+                console.log(error)
+                return 
+            }
 
             console.log('Tabela Criada com sucesso')
         })
