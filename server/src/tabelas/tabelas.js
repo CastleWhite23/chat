@@ -15,17 +15,9 @@ class Tabelas {
             );
         `
         this.connection.query(sql, (error, results) => {
-            return new Promise((resolve, reject) => {
-                if (error) {
-                    reject(error)
-                    console.log(error)
-                    return
-                }
+            if(error) console.log(error) 
 
-                resolve(results)
-                console.log('tabela criada com sucesso')
-
-            })
+            console.log('Tabela Criada com sucesso')
         })
     }
 
