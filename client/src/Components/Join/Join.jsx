@@ -16,11 +16,17 @@ const Join = ( {setChatVisibility, setSocket}) =>{
         setChatVisibility(true)
     }
 
+    const getEnterKey = (e) => {
+        if (e.key === "Enter") {
+            handleClickEntrarButton()
+        }
+
+    }
     return(
         <>
             <h1>Join</h1>
-            <input type="text" ref={usernameRef} placeholder="Nome de usuário" />
-            <button onClick={handleClickEntrarButton}>Entrar</button>
+            <input type="text" ref={usernameRef} onKeyUp={getEnterKey} placeholder="Nome de usuário"  />
+            <button onClick={handleClickEntrarButton}  >Entrar</button>
         </>
     )
 }
