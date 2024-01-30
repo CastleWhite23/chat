@@ -1,21 +1,21 @@
 const connection = require('../config/connection')
 class ModelMensagens{
     executarQuery(sql, params=""){
-            connection.query(sql, params, (error, result)=>{
-                return new Promise((resolve, reject)=>{
-                    if(error){
-                        reject(error)
-                        return
-                    }
-
-                    resolve(result)
-                })
+        return new Promise((resolve, rejects)=>{
+            connection.query(sql, params, (error, resposta)=>{
+                if(error){
+                    rejects(error)
+                    return;
+                }
+   
+                resolve(resposta)
             })
+       })
     }
 
     getAllMessages(){
         const sql = `SELECT * FROM mensagens`
-        this.executarQuery(sql)
+        return this.executarQuery(sql)
     }
 
     postMessages(mensagem, autor){
