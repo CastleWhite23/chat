@@ -4,9 +4,9 @@ class ControllerMensagens{
     async getAllMessages(req, res){
         try{
             const allMessages = await ModelMensagem.getAllMessages();
-            return  res.status(200).json(allMessages)
+            return res.status(200).json(allMessages)
         }catch{
-            return  res.status(400).json({error: 'Deu erro'})
+            return res.status(400).json({error: 'Deu erro'})
         }
         
     }   
