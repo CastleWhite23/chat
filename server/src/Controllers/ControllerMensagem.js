@@ -11,9 +11,9 @@ class ControllerMensagens{
         
     }   
 
-    async postMessages(mensagem, autor){
+    async postMessages(mensagem, autor, autor_id){
         try{
-            const mensagenInserida =  await ModelMensagem.postMessages(mensagem, autor);
+            const mensagenInserida =  await ModelMensagem.postMessages(mensagem, autor, autor_id);
         }catch{
             console.log('deu ruim tropa da alt f4')
         }
