@@ -8,11 +8,12 @@ class Tabelas {
 
     criarTabelaMensagens() {
         const sql = `
-            CREATE TABLE IF NOT EXISTS mensagens (
-                id_mensagem INT PRIMARY KEY AUTO_INCREMENT,
-                mensagem VARCHAR(150),
-                autor VARCHAR(25)
-            );
+        CREATE TABLE IF NOT EXISTS mensagens (
+            id_mensagem INT PRIMARY KEY AUTO_INCREMENT,
+            mensagem VARCHAR(150),
+            autor VARCHAR(25),
+            author_socket_id VARCHAR(60)
+        );
         `
         this.connection.query(sql, (error, results) => {
             if(error) {
