@@ -18,9 +18,9 @@ class ModelMensagens{
         return this.executarQuery(sql)
     }
 
-    postMessages(mensagem, autor){
+    postMessages(mensagem, autor, author_socket_id){
         const sql = `INSERT INTO mensagens SET ?`
-        this.executarQuery(sql, {mensagem, autor})
+        this.executarQuery(sql, {mensagem, autor, author_socket_id})
     }
 }
 
