@@ -6,6 +6,9 @@ const tabelas = require('./src/tabelas/tabelas');
 const connection = require('./src/config/connection');
 const ControllerMensagem = require('./src/Controllers/ControllerMensagem');
 const server = http.createServer(app);
+const cors = require("cors");
+
+app.use(cors())
 
 const io = require("socket.io")(server, {
     cors: {
@@ -14,6 +17,8 @@ const io = require("socket.io")(server, {
     }
 });
 
+
+app.get('/', ControllerMensagem.getAllMessages)
 
 tabelas.init(connection)
 
