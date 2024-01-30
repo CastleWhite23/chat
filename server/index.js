@@ -39,7 +39,7 @@ io.on('connection', (socket) => {
     socket.on('message', (message) => {
         socket.data.message = message
         // console.log(`Usuario: ${socket.data.username}; Mensagem: ${socket.data.message}`);
-        ControllerMensagem.postMessages(message, socket.data.username)
+        ControllerMensagem.postMessages(message, socket.data.username, socket.id)
         
         io.emit('returnData', {
             authorId: socket.id,
