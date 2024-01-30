@@ -11,7 +11,7 @@ const Chat = ({ socket }) => {
         const getAllMessages = async () => {
             try {
                 const allMessages = await api.get('/')
-                console.log(allMessages)
+               setMessageList(allMessages.data)
             } catch {
                 console.log('Deu algo errado')
             }
