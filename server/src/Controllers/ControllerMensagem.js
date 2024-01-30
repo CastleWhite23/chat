@@ -1,9 +1,15 @@
 const ModelMensagem = require("../Models/ModelMensagem")
 
 class ControllerMensagens{
-    getAllMessages(){
-
-    }
+    async getAllMessages(req, res){
+        try{
+            const allMessages = await ModelMensagem.getAllMessages();
+            return  res.status(200).json(allMessages)
+        }catch{
+            return  res.status(400).json({error: 'Deu erro'})
+        }
+        
+    }   
 
     async postMessages(mensagem, autor){
         try{
