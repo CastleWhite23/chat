@@ -1,23 +1,40 @@
 import React, { useState, useRef, useEffect } from "react";
 import './Chat.css'
+import { api } from "../../Services/api";
 
 const Chat = ({ socket }) => {
 
     const [messageList, setMessageList] = useState([])
     const messageRef = useRef()
 
+    useEffect(() => {
+        const getAllMessages = async () => {
+            try {
+                const allMessages = await api.get('/')
+                console.log(allMessages)
+            } catch {
+                console.log('Deu algo errado')
+            }
+
+        }
+
+        getAllMessages()
+    }, [])
+
 
     useEffect(() => {
 
+
+
         socket.on('returnData', (data) => {
             setMessageList((current) => [...current, data])
-            
+
         })
 
         return () => socket.off('returnData')
     }, [socket])
 
-    useEffect(()=>{
+    useEffect(() => {
         scrollToBottom();
     }, [messageList])
 
@@ -49,7 +66,7 @@ const Chat = ({ socket }) => {
     function scrollToBottom() {
         var lastItem = document.querySelector('#lastItem');
         lastItem.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-        
+
     }
 
     return (
