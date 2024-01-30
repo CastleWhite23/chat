@@ -14,7 +14,8 @@ class ModelMensagens{
     }
 
     getAllMessages(){
-
+        const sql = `SELECT * FROM mensagens`
+        this.executarQuery(sql)
     }
 
     postMessages(mensagem, autor){
